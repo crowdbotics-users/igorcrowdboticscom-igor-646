@@ -2,23 +2,38 @@
 
 import {settings, getSettings} from '../lib/settings';
 
-const $ = document.querySelector.bind(document);
-const $e = document.createElement.bind(document);
-const $t = document.createTextNode.bind(document);
+const $ = document
+  .querySelector
+  .bind(document);
+const $e = document
+  .createElement
+  .bind(document);
+const $t = document
+  .createTextNode
+  .bind(document);
 
 const msg = $('#message');
 
 // Set a body class with browser name
 if (typeof chrome.runtime.getBrowserInfo === 'undefined') {
-  document.body.classList.add('chrome');
+  document
+    .body
+    .classList
+    .add('chrome');
 } else {
-  browser.runtime.getBrowserInfo().then(r => {
-    document.body.classList.add(r.name.toLowerCase());
-  });
+  browser
+    .runtime
+    .getBrowserInfo()
+    .then(r => {
+      document
+        .body
+        .classList
+        .add(r.name.toLowerCase());
+    });
 }
 
 var msg_timeout = -1;
-const saveSettings = function() {
+const saveSettings = function () {
   window.clearTimeout(msg_timeout);
   msg.style.opacity = 0;
 
@@ -36,9 +51,10 @@ const saveSettings = function() {
     }
   }
 
-  chrome.storage.local.set({
-    'settings': obj
-  });
+  chrome
+    .storage
+    .local
+    .set({'settings': obj});
 
   msg.style.opacity = 1;
   msg_timeout = window.setTimeout(() => {
@@ -46,7 +62,7 @@ const saveSettings = function() {
   }, 1000);
 };
 
-const insertText = function(el, k, setting, value) {
+const insertText = function (el, k, setting, value) {
   let label = $e('label');
   label.setAttribute('for', k);
   label.textContent = setting.label;
@@ -55,8 +71,7 @@ const insertText = function(el, k, setting, value) {
   if (setting.type == 'textarea') {
     input = $e('textarea');
     input.setAttribute('rows', setting.rows || 4);
-  }
-  else {
+  } else {
     input = $e('input');
     input.setAttribute('type', 'text');
   }
@@ -69,7 +84,7 @@ const insertText = function(el, k, setting, value) {
   input.addEventListener('change', saveSettings);
 };
 
-const insertCheckbox = function(el, k, setting, value) {
+const insertCheckbox = function (el, k, setting, value) {
   let label = $e('label');
   label.setAttribute('for', k);
   label.textContent = setting.label;
@@ -89,21 +104,25 @@ const insertCheckbox = function(el, k, setting, value) {
   input.addEventListener('change', saveSettings);
 };
 
-const insertRadioChoices = function(el, k, setting, value) {
+const insertRadioChoices = function (el, k, setting, value) {
   let s = $e('label');
   s.textContent = setting.label;
 
   el.appendChild(s);
 
   let c = $e('div');
-  c.classList.add('radio-container');
+  c
+    .classList
+    .add('radio-container');
   el.appendChild(c);
 
   for (let name of Object.keys(setting.choices)) {
     let val = setting.choices[name];
     let radio = $e('input');
     let label = $e('label');
-    label.classList.add('pointer');
+    label
+      .classList
+      .add('pointer');
 
     radio.setAttribute('type', 'radio');
     radio.setAttribute('name', k);
@@ -119,7 +138,7 @@ const insertRadioChoices = function(el, k, setting, value) {
   }
 };
 
-const insertSelectChoices = function(el, k, setting, value) {
+const insertSelectChoices = function (el, k, setting, value) {
   let label = $e('label');
   label.setAttribute('for', k);
   label.textContent = setting.label;
@@ -152,14 +171,11 @@ getSettings().then(result => {
 
     if (['text', 'textarea'].includes(settings[k].type)) {
       insertText(el, k, settings[k], result[k]);
-    }
-    else if (settings[k].type == 'checkbox') {
+    } else if (settings[k].type == 'checkbox') {
       insertCheckbox(el, k, settings[k], result[k]);
-    }
-    else if (settings[k].type == 'radio') {
+    } else if (settings[k].type == 'radio') {
       insertRadioChoices(el, k, settings[k], result[k]);
-    }
-    else if (settings[k].type == 'select') {
+    } else if (settings[k].type == 'select') {
       insertSelectChoices(el, k, settings[k], result[k]);
     }
   }

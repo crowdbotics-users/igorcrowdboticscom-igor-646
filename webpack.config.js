@@ -3,10 +3,8 @@ const path = require('path');
 const webpack = require('webpack');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 
-
 // Addon directory
 const dest_dir = path.resolve(__dirname, 'addon');
-
 
 // Make manifest.json out of package.json information
 const package = require('./package.json');
@@ -14,7 +12,6 @@ const manifest = require('./webext-manifest.json');
 manifest.version = package.version;
 manifest.description = package.description;
 manifest.author = package.author.name;
-
 
 module.exports = {
   target: 'web',
