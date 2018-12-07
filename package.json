@@ -1,0 +1,20 @@
+{
+  "name": "igorcrowdboticscom_igor_646",
+  "version": "0.1.0",
+  "description": "A simple browser extension to add expenses This web_extension application was built with Crowdbotics www.crowdbotics.com",
+  "license": "UNLICENSED",
+  "private": true,
+  "author": {
+    "name": "igor",
+    "email": "igor@crowdbotics.com"
+  },
+  "contributors": [
+  ],
+  "devDependencies": {
+    "eslint": "^4.11.0",
+    "generate-json-webpack-plugin": "^0.2.2",
+    "web-ext": "^2.2.2",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {}
+}
