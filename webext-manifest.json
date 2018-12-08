@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "igorcrowdboticscom_igor_646",
-  "version": "",
+  "version": "0.1.1",
   "description": "",
   "author": "",
   "applications": {
@@ -18,11 +18,23 @@
     "browser_style": true,
     "chrome_style": true,
     "open_in_tab": false,
-    "page": "options/options.html"
+    "page": "app/app.html"
   },
   "browser_action": {
-    "default_popup": "popup/popup.html"
+    "default_popup": "app/app.html"
   },
-  "permissions": ["storage"],
-  "content_scripts": []
+  "background": {
+    "page": "app/background.html"
+  },
+  "permissions": ["storage", "identity"],
+  "content_scripts": [],
+  "content_security_policy": "script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+  "oauth2": {
+    "client_id": "899956650971-gmjhgemv322pprjbji77veq7gc5i5a3c.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ]
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAguILGuB7ISPq6pXFw+lMFS8adue8gQJ35H86Hm9cZl+3pQ5DOYXLKBPOJJOJ5T5MpPnwEKOYeUqRViLd41by+G2NS9tg5j3TJzZkZQQUoUxfeVnEhNmHXSLCCCwh2gYiJ0I3j57/Hf3AcHS/oulCdC1CNvegqapibpmH5pZwuRx5aRNN+PuN24sD2rO6IqDlLNWf0oIRCjt+xdenrzLAZvG6Ch6Rucvht145LwacnWpFzn59tENfoFFlJvoozRVA/dpmeUhQ2pLz4iSQVeI/Q1mnesX27S5L/jovnCtOknq4dN8oHk9al9937yov5IWo5Ib2nipqMSsVwdZLjZJKawIDAQAB"
 }

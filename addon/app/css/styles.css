@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
 html,
 body {
   background: linear-gradient(to bottom right, #7f63f4, #140f2f);
   font-size: 14px;
+  font-family: 'Comfortaa', cursive;
   margin: 0;
-  min-height: 180px;
+  min-height: 275px;
   padding: 0;
   width: 384px;
 }
@@ -42,4 +45,20 @@ tbody > tr {
 }
 #myChart.chart-active {
   background-color: #ffffff;
+}
+.quickstart-user-details-container .container {
+  opacity: 0;
+}
+
+#authMessage {
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

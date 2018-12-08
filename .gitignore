@@ -6,3 +6,4 @@
 /addon/.web-extension-id
 /addon/resources/dist
 /addon/manifest.json
+/addon/app/js/keys.js
