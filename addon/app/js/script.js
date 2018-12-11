@@ -5,26 +5,44 @@ let chart;
 document
   .querySelector('#chart-tab')
   .addEventListener('click', function () {
-    chartSelect.value = '0';
     destroyChart();
+    chartSelect.value = '1';
+    const itemsArray = localStorage.getItem('items')
+      ? JSON.parse(localStorage.getItem('items'))
+      : [];
+    const [utilityData,
+      goodsData,
+      groceryData,
+      generalData] = getValues(itemsArray);
+    barChart(utilityData, goodsData, groceryData, generalData);
   });
 
 document
   .querySelector('#clearAll')
   .addEventListener('click', function () {
-    const total = document.querySelector('.total span');
-    const i = Array.from(document.getElementsByTagName('i'));
-    const items = i.filter(item => item.id);
-    items.map(item => deleteUserData(item.id));
-    total.innerText = '0.00';
+    swal({title: "Are you sure?", text: "Once removed, you will not be able to recover the expenses!", icon: "warning", buttons: true, dangerMode: true}).then((willDelete) => {
+      if (willDelete) {
+        const total = document.querySelector('.total span');
+        const i = Array.from(document.getElementsByTagName('i'));
+        const items = i.filter(item => item.id);
+        items.map(item => deleteUserData(item.id));
+        total.innerText = '0.00';
+        swal("Ok! Your expenses were removed!", {icon: "success"});
+      }
+    });
   });
 
 document
   .body
   .addEventListener('click', function (event) {
-    if (event.target.nodeName === 'I') {
-      const item = event.srcElement.id;
-      deleteUserData(item);
+    if (event.target.nodeName === 'I' && event.target.className === 'fas fa-trash-alt') {
+      swal({title: "Are you sure?", text: "Once removed, you will not be able to recover this expense!", icon: "warning", buttons: true, dangerMode: true}).then((willDelete) => {
+        if (willDelete) {
+          const item = event.srcElement.id;
+          deleteUserData(item);
+          swal("Ok! Your expense was removed!", {icon: "success"});
+        }
+      });
     }
   });
 

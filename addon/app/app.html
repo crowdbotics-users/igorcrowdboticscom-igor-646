@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="./css/styles.css" />
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+    <script src="js/sweetalert.js"></script>
     <script src="js/keys.js"></script>
     <script src="js/app.js"></script>
   </head>
@@ -72,17 +73,19 @@
           >
             <div class="text-white">
               <h4 class="total">Total expend: $<span>0.00</span></h4>
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
+              <div style="overflow-x: scroll; margin-bottom: 10px;">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Description</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
               <span type="button" class="btn btn-danger" id="clearAll"
                 >Remove All</span
               >
@@ -115,7 +118,7 @@
                   class="form-control"
                   id="priceInput"
                   aria-describedby="priceHelp"
-                  placeholder="Price"
+                  placeholder="Enter price"
                   step="0.01"
                   required
                 />
